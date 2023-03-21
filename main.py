@@ -35,44 +35,15 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         result = response.json()
         temp = response.json()['main']['temp']
         self.main_lbl_showtemperature.setText(str(temp)+" C°")
-        # weather = response.json()['weather'][0]
         weather_code = response.json()['weather'][0]['icon']
-        
-
-        # new_url = 'https://openweathermap.org/img/wn/10d@2x.png'
-        # image = requests.get(new_url)
-
-        # self.main_lbl_showweathericon.setPicture(image)
-        # pixmap = QPixmap('02n@2x.png')
-        # self.main_lbl_showweathericon.setPixmap(pixmap)
-
-
-        # url2 = f'https://openweathermap.org/img/wn/{weather_code}@2x.png'
-        # response2 = requests.get(url2)
-        # if response2.status_code == 200:
-        #     with open(f'sample{weather_code}.jpg', 'wb') as f:
-        #         f.write(response2.content)
-        # pixmap = QPixmap(f'sample{weather_code}.jpg' + weather_code + ".jpg")
-        # pixmap = QPixmap("http://openweathermap.org/img/wn/" + weather_code + "@2x.png");
-        # self.main_lbl_showweathericon.setPixmap(pixmap)
 
         self.pixmap = QPixmap()
         request = requests.get(f'https://openweathermap.org/img/wn/{weather_code}@2x.png')
         self.pixmap.loadFromData(request.content)
         self.main_lbl_showweathericon.setPixmap(self.pixmap)
-        
-        
-    
 
         # bu bilgilerden gerekli olanlar Mongoya atılıp oradan yazdırılacak
-
-
-        # print(f"\n1 {first} is {result} {second} on {day}/{month}/{year}")
-        # api
-        # 
         
-
-
 
     def exit(self):
         sys.exit()  
