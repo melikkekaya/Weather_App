@@ -263,6 +263,19 @@
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="main_btn_exit">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>640</y>
+      <width>81</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Exit</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
