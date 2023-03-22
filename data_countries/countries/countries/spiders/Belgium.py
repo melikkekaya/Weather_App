@@ -18,10 +18,9 @@ class BelgiumSpider(scrapy.Spider):
         yield{
                 "City" : city_name,
                 "State": state_name,
-                "Population": population,
+                "Population": population
                 }      
        
-
 
 # for i in response.css(".work-process-card"):
 #             weeks = i.css("span.number::text").get().strip()

@@ -13,6 +13,8 @@ client = MongoClient(connection, tlsCAFile=certifi.where())
 db = client.get_database ('WeatherApp')
 records = db.weather
 
+# records.insert_many(......buraya liste içine {a:ajksf} şeklinde giriş jsondan)
+
 
 class Main_Window(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -50,6 +52,12 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.main_lbl_showweathericon.setPixmap(self.pixmap)
 
         # bu bilgilerden gerekli olanlar Mongoya atılıp oradan yazdırılacak
+
+
+        # mongodaki weather bilgisi updatei için: 
+
+        # student updates = {'name': 'Nikhil'} 
+        # records.update_one ({'roll_no': 123}, {'$set': student _updates})
 
     def exit(self):
         sys.exit()  
