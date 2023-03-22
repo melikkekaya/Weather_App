@@ -29,21 +29,20 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         API_key = '38a18d9e8231ce64548938b0187511ce'
         url = f'https://api.openweathermap.org/data/2.5/weather?q={city_name},{country_code}&appid={API_key}&units=metric'
         
-
         response = requests.get(url)
-        # print(response)
-        result = response.json()
         temp = response.json()['main']['temp']
         self.main_lbl_showtemperature.setText(str(temp)+" C°")
-        weather_code = response.json()['weather'][0]['icon']
 
+        weather_situation = response.json()['weather'][0]['description']
+        self.main_lbl_showweathersituation.setText(weather_situation)
+
+        weather_code = response.json()['weather'][0]['icon']
         self.pixmap = QPixmap()
         request = requests.get(f'https://openweathermap.org/img/wn/{weather_code}@2x.png')
         self.pixmap.loadFromData(request.content)
         self.main_lbl_showweathericon.setPixmap(self.pixmap)
 
         # bu bilgilerden gerekli olanlar Mongoya atılıp oradan yazdırılacak
-        
 
     def exit(self):
         sys.exit()  
@@ -53,18 +52,9 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     mainwindow = Main_Window()
     widget = QtWidgets.QStackedWidget()
-    
     widget.addWidget(mainwindow)
     widget.show()
-
     try:
         sys.exit(app.exec_())
     except:
         print("Exiting")
-    
-
-
-   
-# # HIDE PROGRESSBAR AND MESSAGES CONTAINER BY DEFAULT
-# self.ui.progressBar.setVisible(False);
-# self.ui.message_frame.hide ()
