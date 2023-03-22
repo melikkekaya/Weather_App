@@ -1,25 +1,20 @@
 import scrapy
 
-
 class GermanySpider(scrapy.Spider):
-    name = "Germany"
+    name = "germany_data"
+
     #allowed_domains = ["en.wikipedia.org"]
     start_urls = ["https://en.wikipedia.org/wiki/List_of_cities_in_Germany_by_population"]
-
+    
     def parse(self, response):
-        pass
 
-
-
-        # results = response.xpath('.//*[@id="mw-content-text"]/div[1]/table').get()
-
-        # for i in results:
-        #     city_name = results.xpath('//*[@id="mw-content-text"]/div[1]/table/tbody/tr[1]/td[2]/i/b/a/text()').get()
-        #     state_name = results.xpath('//*[@id="mw-content-text"]/div[1]/table/tbody/tr[1]/td[3]/a/text()').get()
-        #     population = results.xpath('//*[@id="mw-content-text"]/div[1]/table/tbody/tr[1]/td[5]/text()').get()
-
-        #     yield{
-        #         "City" : city_name,
-        #         "State": state_name,
-        #         "Population": population,
-        #         }   
+        for row in response.css("table.wikitable.sortable tr"):
+            city_name = row.css("td:nth-child(2) a::text").get()
+            state_name = row.xpath('.//td[3]/a/text()').get()
+            population = row.css('td:nth-child(4)::text').get()
+            if city_name is not None:
+                yield {
+                    "city_name": city_name.strip(),
+                    "state_name": state_name.strip(),
+                    "population": population.strip()
+                }
