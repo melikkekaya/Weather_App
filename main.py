@@ -7,7 +7,7 @@ from Ui_weather_main import *
 
 #scrapy ayrı klasörde şehir isimleri, bölge/stateleri ve nüfusları
 
-connection = "mongodb+srv://melike:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
+connection = "mongodb+srv://tuba:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
 client = MongoClient(connection)
 client = MongoClient(connection, tlsCAFile=certifi.where())
 db = client.get_database ('WeatherApp')
