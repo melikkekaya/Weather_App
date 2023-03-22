@@ -1,10 +1,17 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-import sys, requests
+from pymongo import *
+import sys, requests, certifi
 
 from Ui_weather_main import *
 
 #scrapy ayrı klasörde şehir isimleri, bölge/stateleri ve nüfusları
+
+connection = "mongodb+srv://melike:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
+client = MongoClient(connection)
+client = MongoClient(connection, tlsCAFile=certifi.where())
+db = client.get_database ('WeatherApp')
+records = db.weather
 
 
 class Main_Window(QMainWindow, Ui_MainWindow):
