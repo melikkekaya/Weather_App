@@ -11,7 +11,7 @@ class BelgiumSpider(scrapy.Spider):
             state_name = i.xpath(".//td[9]/a/text()").get()
             population = i.xpath(".//td[7]/text()").get()
             yield{
-                "City" : city_name,
-                "State": state_name,
-                "Population": population
+                "city_name" : city_name,
+                "state_name": state_name,
+                "population": population
                  }
