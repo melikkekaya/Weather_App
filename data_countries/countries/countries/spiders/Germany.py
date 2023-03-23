@@ -14,6 +14,7 @@ class GermanySpider(scrapy.Spider):
             population = row.css('td:nth-child(4)::text').get()
             if city_name is not None:
                 yield {
+                    "country_name": "DE",
                     "city_name": city_name.strip(),
                     "state_name": state_name.strip(),
                     "population": population.strip()
