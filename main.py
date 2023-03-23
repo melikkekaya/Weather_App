@@ -7,13 +7,13 @@ from Ui_weather_main import *
 
 #scrapy ayrı klasörde şehir isimleri, bölge/stateleri ve nüfusları
 
-connection = "mongodb+srv://tuba:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
-client = MongoClient(connection)
-client = MongoClient(connection, tlsCAFile=certifi.where())
-db = client.get_database ('WeatherApp')
-records = db.weather
+# connection = "mongodb+srv://tuba:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
+# client = MongoClient(connection)
+# client = MongoClient(connection, tlsCAFile=certifi.where())
+# db = client.get_database ('WeatherApp')
+# weather_records = db.weather
+# countries_records = db.countries_data
 
-# records.insert_many(......buraya liste içine {a:ajksf} şeklinde giriş jsondan)
 
 
 class Main_Window(QMainWindow, Ui_MainWindow):
@@ -21,16 +21,62 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         super(Main_Window, self).__init__()
         self.setupUi(self)
         # self.main = Main_Window()
+        connection = "mongodb+srv://tuba:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
+        # client = MongoClient(connection)
+        client = MongoClient(connection, tlsCAFile=certifi.where())
+        db = client.get_database ('WeatherApp')
+        self.weather_records = db.weather
+        self.countries_records = db.countries_data
 
         self.main_btn_search.clicked.connect(self.search)
         self.main_btn_exit.clicked.connect(self.exit)
 
+        self.main_btn_belgium.clicked.connect(self.BEupdate_city)
+        self.main_btn_germany.clicked.connect(self.DEupdate_city)
+        self.main_btn_usa.clicked.connect(self.USupdate_city)
     
-
-    def update_city(self):
+    def BEupdate_city(self):
         # mongodb den şehir çek
+        reader = self.countries_records.find({"country_name":"BE"},{'city_name': 1, "state_name":1, 'population': 1})
+        data_list = []
+        for data in reader:
+            data_list.append(data)
+        
+        row = 0
+        self.main_tbl_cities.setRowCount(len(data_list))
+        for data in data_list:
+            self.main_tbl_cities.setItem(row, 0, QtWidgets.QTableWidgetItem(data["city_name"]))
+            self.main_tbl_cities.setItem(row, 1, QtWidgets.QTableWidgetItem(data["state_name"]))
+            self.main_tbl_cities.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data["population"]))) 
+            row += 1
 
-        pass
+    def DEupdate_city(self):
+        reader = self.countries_records.find({"country_name":"DE"},{'city_name': 1, "state_name":1, 'population': 1})
+        data_list = []
+        for data in reader:
+            data_list.append(data)
+     
+        row = 0
+        self.main_tbl_cities.setRowCount(len(data_list))
+        for data in data_list:
+            self.main_tbl_cities.setItem(row, 0, QtWidgets.QTableWidgetItem(data["city_name"]))
+            self.main_tbl_cities.setItem(row, 1, QtWidgets.QTableWidgetItem(data["state_name"]))
+            self.main_tbl_cities.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data["population"]))) 
+            row += 1
+
+    def USupdate_city(self):
+        reader = self.countries_records.find({"country_name":"US"},{'city_name': 1, "state_name":1, 'population': 1})
+        data_list = []
+        for data in reader:
+            data_list.append(data)
+     
+        row = 0
+        self.main_tbl_cities.setRowCount(len(data_list))
+        for data in data_list:
+            self.main_tbl_cities.setItem(row, 0, QtWidgets.QTableWidgetItem(data["city_name"]))
+            self.main_tbl_cities.setItem(row, 1, QtWidgets.QTableWidgetItem(data["state_name"]))
+            self.main_tbl_cities.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data["population"]))) 
+            row += 1
 
     def search(self):
         city_name = "Seraing"
@@ -52,6 +98,7 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.main_lbl_showweathericon.setPixmap(self.pixmap)
 
         # bu bilgilerden gerekli olanlar Mongoya atılıp oradan yazdırılacak
+        #mongoya yazdırma için db.pymongo2.insert_one ({'name' : 'pymongo tutorial '}) veya find and update
 
 
         # mongodaki weather bilgisi updatei için: 

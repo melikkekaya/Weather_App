@@ -216,7 +216,7 @@
    <widget class="QPushButton" name="main_btn_exit">
     <property name="geometry">
      <rect>
-      <x>740</x>
+      <x>680</x>
       <y>660</y>
       <width>81</width>
       <height>26</height>
@@ -226,12 +226,12 @@
      <string>Exit</string>
     </property>
    </widget>
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QTableWidget" name="main_tbl_cities">
     <property name="geometry">
      <rect>
       <x>40</x>
       <y>170</y>
-      <width>371</width>
+      <width>411</width>
       <height>511</height>
      </rect>
     </property>
@@ -247,7 +247,7 @@
     </column>
     <column>
      <property name="text">
-      <string>New Column</string>
+      <string>Population</string>
      </property>
     </column>
    </widget>
@@ -330,6 +330,19 @@
     </property>
     <property name="text">
      <string>Info</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="main_lbl_searchwarning">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>170</y>
+      <width>411</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Uyarı label'ı</string>
     </property>
    </widget>
   </widget>
