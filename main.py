@@ -20,7 +20,6 @@ class Main_Window(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(Main_Window, self).__init__()
         self.setupUi(self)
-        # self.main = Main_Window()
         connection = "mongodb+srv://tuba:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
         # client = MongoClient(connection)
         client = MongoClient(connection, tlsCAFile=certifi.where())
@@ -28,7 +27,7 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.weather_records = db.weather
         self.countries_records = db.countries_data
 
-        self.main_btn_search.clicked.connect(self.search)
+        self.main_btn_search.clicked.connect(self.search_city)
         self.main_btn_exit.clicked.connect(self.exit)
 
         self.main_btn_belgium.clicked.connect(self.BEupdate_city)
@@ -38,17 +37,19 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.main_tbl_cities.itemClicked.connect(self.clicked_city)
     
     def clicked_city(self):
-        # for item in self.main_tbl_cities.selectedItems():
-            # print (item.text())
-            # print (item.row(), item.column())
             indexes = []
             for selectionRange in self.main_tbl_cities.selectedRanges():
                 indexes.extend(range(selectionRange.topRow(), selectionRange.bottomRow()+1))
                 for i in indexes:
                     self.city_name = self.main_tbl_cities.item(i, 0).text()
                     self.take_info()
-                    # self.search()
-                    
+                    self.update_weather()
+    
+    def search_city(self):
+        self.city_name = self.main_linedit_city.text()
+        self.take_info()
+        self.update_weather()
+
     
     def take_info(self):
         reader = self.countries_records.find({"city_name":self.city_name},{'country_name': 1, "state_name":1, 'population': 1})
@@ -111,12 +112,9 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             self.main_tbl_cities.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data["population"]))) 
             row += 1
 
-    def search(self):
+    def update_weather(self):
         city_name = self.city_name
         country_code = self.country_name
-        # self.take_info()
-
-        #buraya take_infodakiler gelecek
 
         API_key = '38a18d9e8231ce64548938b0187511ce'
         url = f'https://api.openweathermap.org/data/2.5/weather?q={city_name},{country_code}&appid={API_key}&units=metric'
