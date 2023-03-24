@@ -34,6 +34,39 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.main_btn_belgium.clicked.connect(self.BEupdate_city)
         self.main_btn_germany.clicked.connect(self.DEupdate_city)
         self.main_btn_usa.clicked.connect(self.USupdate_city)
+
+        self.main_tbl_cities.itemClicked.connect(self.clicked_city)
+    
+    def clicked_city(self):
+        # for item in self.main_tbl_cities.selectedItems():
+            # print (item.text())
+            # print (item.row(), item.column())
+            indexes = []
+            for selectionRange in self.main_tbl_cities.selectedRanges():
+                indexes.extend(range(selectionRange.topRow(), selectionRange.bottomRow()+1))
+                for i in indexes:
+                    self.city_name = self.main_tbl_cities.item(i, 0).text()
+                    self.take_info()
+                    # self.search()
+                    
+    
+    def take_info(self):
+        reader = self.countries_records.find({"city_name":self.city_name},{'country_name': 1, "state_name":1, 'population': 1})
+        data_list = []
+        for data in reader:
+            data_list.append(data)
+        for data in data_list:
+            self.main_lbl_showcityname.setText(self.city_name)
+            self.main_lbl_showstate.setText(data["state_name"])
+            self.main_lbl_showpopulation.setText(str(data["population"]))
+            self.country_name = data["country_name"]
+            if self.country_name == "BE":
+                self.main_lbl_showcountry.setText("Belgium")
+            elif self.country_name == "DE":
+                self.main_lbl_showcountry.setText("Germany")
+            elif self.country_name == "US":
+                self.main_lbl_showcountry.setText("United States of America")
+ 
     
     def BEupdate_city(self):
         # mongodb den şehir çek
@@ -79,8 +112,12 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             row += 1
 
     def search(self):
-        city_name = "Seraing"
-        country_code = "be"
+        city_name = self.city_name
+        country_code = self.country_name
+        # self.take_info()
+
+        #buraya take_infodakiler gelecek
+
         API_key = '38a18d9e8231ce64548938b0187511ce'
         url = f'https://api.openweathermap.org/data/2.5/weather?q={city_name},{country_code}&appid={API_key}&units=metric'
         
