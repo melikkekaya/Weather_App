@@ -26,7 +26,14 @@
    <string>Weather App</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">#centralwidget{
+
+
+border-image: url() 0 0 0 0 stretch stretch;
+border-width: 0px;
+
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="main_btn_search">
@@ -64,6 +71,9 @@
       <height>51</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(254, 255, 227);</string>
+    </property>
     <property name="text">
      <string>Welcome!</string>
     </property>
@@ -89,6 +99,9 @@
       <width>201</width>
       <height>71</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(254, 255, 227);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
@@ -364,6 +377,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../Desktop/deneme.qrc"/>
+ </resources>
  <connections/>
 </ui>
