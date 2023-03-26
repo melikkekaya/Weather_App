@@ -27,11 +27,11 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.weather_records = db.weather
         self.countries_records = db.countries_data
 
-        self.BEupdate_city()
-        self.city_name = self.main_tbl_cities.item(0, 0).text()
+        #self.BEupdate_city()
+        """self.city_name = self.main_tbl_cities.item(0, 0).text()
         self.country_name = "BE"
         self.take_info()
-        self.update_weather()
+        self.update_weather()"""
 
         self.main_btn_search.clicked.connect(self.search_city)
         self.main_btn_exit.clicked.connect(self.exit)
@@ -40,7 +40,17 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.main_btn_germany.clicked.connect(self.DEupdate_city)
         self.main_btn_usa.clicked.connect(self.USupdate_city)
         self.main_tbl_cities.itemClicked.connect(self.clicked_city)
+        self.main_linedit_city.textChanged.connect(self.BEupdate_city)
+        self.main_linedit_city.textChanged.connect(self.DEupdate_city)
+        self.main_linedit_city.textChanged.connect(self.USupdate_city)
     
+    def update_city_table(self, cities):
+        row = 0
+        self.main_tbl_cities.setRowCount(len(cities))
+        for city in cities:
+            self.main_tbl_cities.setItem(row, 0, QtWidgets.QTableWidgetItem(city))
+            row += 1
+            
     def clicked_city(self):
             indexes = []
             for selectionRange in self.main_tbl_cities.selectedRanges():
@@ -78,7 +88,7 @@ class Main_Window(QMainWindow, Ui_MainWindow):
                 self.main_lbl_showcountry.setText("United States of America")
  
     
-    def BEupdate_city(self):
+    def BEupdate_city(self, text):
         # mongodb den şehir çek
         reader = self.countries_records.find({"country_name":"BE"},{'city_name': 1, "state_name":1, 'population': 1})
         data_list = []
@@ -96,7 +106,13 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.main_btn_usa.setDefault(False)
         self.main_btn_belgium.setDefault(True)
 
-    def DEupdate_city(self):
+        if text:
+            cities = [city["city_name"] for city in data_list if "city_name" in city and city["city_name"].lower().startswith(text.lower())]
+            self.update_city_table(cities)
+        else:
+            self.update_city_table([city["city_name"] for city in data_list])
+
+    def DEupdate_city(self, text):
         reader = self.countries_records.find({"country_name":"DE"},{'city_name': 1, "state_name":1, 'population': 1})
         data_list = []
         for data in reader:
@@ -113,7 +129,13 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.main_btn_usa.setDefault(False)
         self.main_btn_germany.setDefault(True)
 
-    def USupdate_city(self):
+        if text:
+            cities = [city["city_name"] for city in data_list if "city_name" in city and city["city_name"].lower().startswith(text.lower())]
+            self.update_city_table(cities)
+        else:
+            self.update_city_table([city["city_name"] for city in data_list])
+
+    def USupdate_city(self, text):
         reader = self.countries_records.find({"country_name":"US"},{'city_name': 1, "state_name":1, 'population': 1})
         data_list = []
         for data in reader:
@@ -129,6 +151,12 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.main_btn_belgium.setDefault(False)
         self.main_btn_germany.setDefault(False)
         self.main_btn_usa.setDefault(True)
+
+        if text:
+            cities = [city["city_name"] for city in data_list if "city_name" in city and city["city_name"].lower().startswith(text.lower())]
+            self.update_city_table(cities)
+        else:
+            self.update_city_table([city["city_name"] for city in data_list])
 
     def update_weather(self):
         city_name = self.city_name
