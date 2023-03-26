@@ -382,7 +382,7 @@ border-width: 0px;
      </rect>
     </property>
     <property name="text">
-     <string>Uyarı label'ı</string>
+     <string/>
     </property>
    </widget>
   </widget>
