@@ -67,6 +67,7 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             self.update_weather()
             self.main_lbl_searchwarning.hide()
         except:
+            self.main_lbl_searchwarning.show()
             self.main_lbl_searchwarning.setText("Incorrect city name!")
 
     
