@@ -17,7 +17,14 @@ class Ui_MainWindow(object):
         MainWindow.resize(1000, 750)
         MainWindow.setMinimumSize(QtCore.QSize(1000, 750))
         MainWindow.setMaximumSize(QtCore.QSize(1000, 750))
-        MainWindow.setStyleSheet("")
+        MainWindow.setStyleSheet("#centralwidget{\n"
+"\n"
+"\n"
+"border-image: url() 0 0 0 0 stretch stretch;\n"
+"border-width: 0px;\n"
+"\n"
+"}\n"
+"")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.main_btn_search = QtWidgets.QPushButton(self.centralwidget)
@@ -28,12 +35,14 @@ class Ui_MainWindow(object):
         self.main_lbl_headingcountrytop.setObjectName("main_lbl_headingcountrytop")
         self.main_lbl_mainheading = QtWidgets.QLabel(self.centralwidget)
         self.main_lbl_mainheading.setGeometry(QtCore.QRect(80, 30, 801, 51))
+        self.main_lbl_mainheading.setStyleSheet("background-color: rgb(254, 255, 227);")
         self.main_lbl_mainheading.setObjectName("main_lbl_mainheading")
         self.main_lbl_headingcity = QtWidgets.QLabel(self.centralwidget)
         self.main_lbl_headingcity.setGeometry(QtCore.QRect(510, 121, 71, 31))
         self.main_lbl_headingcity.setObjectName("main_lbl_headingcity")
         self.main_lbl_showcityname = QtWidgets.QLabel(self.centralwidget)
         self.main_lbl_showcityname.setGeometry(QtCore.QRect(610, 210, 201, 71))
+        self.main_lbl_showcityname.setStyleSheet("background-color: rgb(254, 255, 227);")
         self.main_lbl_showcityname.setFrameShape(QtWidgets.QFrame.Box)
         self.main_lbl_showcityname.setFrameShadow(QtWidgets.QFrame.Plain)
         self.main_lbl_showcityname.setObjectName("main_lbl_showcityname")
@@ -94,6 +103,7 @@ class Ui_MainWindow(object):
         self.main_tbl_cities.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
         self.main_tbl_cities.setHorizontalHeaderItem(2, item)
+        self.main_tbl_cities.horizontalHeader().setDefaultSectionSize(135)
         self.main_linedit_city = QtWidgets.QLineEdit(self.centralwidget)
         self.main_linedit_city.setGeometry(QtCore.QRect(610, 120, 161, 31))
         self.main_linedit_city.setObjectName("main_linedit_city")
