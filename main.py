@@ -27,13 +27,18 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.weather_records = db.weather
         self.countries_records = db.countries_data
 
+        self.BEupdate_city()
+        self.city_name = self.main_tbl_cities.item(0, 0).text()
+        self.country_name = "BE"
+        self.take_info()
+        self.update_weather()
+
         self.main_btn_search.clicked.connect(self.search_city)
         self.main_btn_exit.clicked.connect(self.exit)
 
         self.main_btn_belgium.clicked.connect(self.BEupdate_city)
         self.main_btn_germany.clicked.connect(self.DEupdate_city)
         self.main_btn_usa.clicked.connect(self.USupdate_city)
-
         self.main_tbl_cities.itemClicked.connect(self.clicked_city)
     
     def clicked_city(self):
@@ -47,8 +52,12 @@ class Main_Window(QMainWindow, Ui_MainWindow):
     
     def search_city(self):
         self.city_name = self.main_linedit_city.text()
-        self.take_info()
-        self.update_weather()
+        try:
+            self.take_info()
+            self.update_weather()
+            self.main_lbl_searchwarning.hide()
+        except:
+            self.main_lbl_searchwarning.setText("Incorrect city name!")
 
     
     def take_info(self):
@@ -83,6 +92,9 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             self.main_tbl_cities.setItem(row, 1, QtWidgets.QTableWidgetItem(data["state_name"]))
             self.main_tbl_cities.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data["population"]))) 
             row += 1
+        self.main_btn_germany.setDefault(False)
+        self.main_btn_usa.setDefault(False)
+        self.main_btn_belgium.setDefault(True)
 
     def DEupdate_city(self):
         reader = self.countries_records.find({"country_name":"DE"},{'city_name': 1, "state_name":1, 'population': 1})
@@ -97,6 +109,9 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             self.main_tbl_cities.setItem(row, 1, QtWidgets.QTableWidgetItem(data["state_name"]))
             self.main_tbl_cities.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data["population"]))) 
             row += 1
+        self.main_btn_belgium.setDefault(False)
+        self.main_btn_usa.setDefault(False)
+        self.main_btn_germany.setDefault(True)
 
     def USupdate_city(self):
         reader = self.countries_records.find({"country_name":"US"},{'city_name': 1, "state_name":1, 'population': 1})
@@ -111,6 +126,9 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             self.main_tbl_cities.setItem(row, 1, QtWidgets.QTableWidgetItem(data["state_name"]))
             self.main_tbl_cities.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data["population"]))) 
             row += 1
+        self.main_btn_belgium.setDefault(False)
+        self.main_btn_germany.setDefault(False)
+        self.main_btn_usa.setDefault(True)
 
     def update_weather(self):
         city_name = self.city_name
