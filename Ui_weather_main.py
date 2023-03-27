@@ -98,6 +98,7 @@ class Ui_MainWindow(object):
         self.main_btn_exit.setObjectName("main_btn_exit")
         self.main_tbl_cities = QtWidgets.QTableWidget(self.centralwidget)
         self.main_tbl_cities.setGeometry(QtCore.QRect(40, 170, 411, 511))
+        self.main_tbl_cities.setStyleSheet("background-color: rgb(255, 201, 255);")
         self.main_tbl_cities.setObjectName("main_tbl_cities")
         self.main_tbl_cities.setColumnCount(3)
         self.main_tbl_cities.setRowCount(0)
