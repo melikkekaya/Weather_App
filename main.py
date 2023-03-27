@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from pymongo import *
 import sys, requests, certifi
+from pymongo import MongoClient
 
 from Ui_weather_main import *
 
@@ -187,6 +188,24 @@ class Main_Window(QMainWindow, Ui_MainWindow):
 
         # student updates = {'name': 'Nikhil'} 
         # records.update_one ({'roll_no': 123}, {'$set': student _updates})
+
+
+        #mongodb ye veri yazdrima ###düzenlenecek!!!
+#         #veri tabaninda collection olusturma
+#         client = MongoClient()
+#         db = client["WeatherApp"]
+#         collection = db["weather"]
+#         #hava durumunu Mongodb ye yazdirma
+#         weather_data = {
+#            " city_name" : self.city_name,
+#            "temperature" : temp['main']['temp'],
+#            " weather_situation":['weather'][0]['description'], 
+#            "weather_code": weather_code['weather'][0]['icon']
+# }
+#         records = collection.insert_many(weather_data)
+#         print(records)
+
+#         #records = collection.insert_one(weather_data)
 
     def exit(self):
         sys.exit()  
