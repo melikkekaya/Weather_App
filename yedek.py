@@ -3,7 +3,7 @@ from PyQt5.QtGui import *
 from pymongo import *
 import sys, requests, certifi
 
-from Ui_weather_main import *
+from Ui_deneme import *
 
 #scrapy ayrı klasörde şehir isimleri, bölge/stateleri ve nüfusları
 
