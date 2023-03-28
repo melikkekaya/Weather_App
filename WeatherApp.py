@@ -190,7 +190,8 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         msg = QMessageBox()
         msg.setWindowTitle("Information")
         msg.setText("This application is created\non 28 March 2023\nby following developers:\n\nMelih YILMAZ\nMelike KAYA KARDIÇ\nTuba GÜMÜŞ")
-        msg.setStyleSheet("background-color: rgba(92, 128, 154, 0.5);")
+        msg.setStyleSheet("background-color: rgb(92, 128, 154);")
+        msg.setWindowOpacity(0.95)
         x = msg. exec_()
 
     def exit(self):
