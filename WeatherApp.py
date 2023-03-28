@@ -85,9 +85,12 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             self.main_tbl_cities.setItem(row, 1, QtWidgets.QTableWidgetItem(data["state_name"]))
             self.main_tbl_cities.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data["population"]))) 
             row += 1
-        self.main_btn_germany.setDefault(False)
-        self.main_btn_usa.setDefault(False)
-        self.main_btn_belgium.setDefault(True)
+        # self.main_btn_germany.setDefault(False)
+        # self.main_btn_usa.setDefault(False)
+        # self.main_btn_belgium.setDefault(True)
+        self.main_btn_belgium.setStyleSheet("background-color: rgba(255,255,255,0.95);")
+        self.main_btn_germany.setStyleSheet("background-color: rgba(255,255,255,0.7);")
+        self.main_btn_usa.setStyleSheet("background-color: rgba(255,255,255,0.7);")
 
     def DEupdate_city(self):
         reader = self.countries_records.find({"country_name":"DE"},{'city_name': 1, "state_name":1, 'population': 1})
@@ -102,9 +105,12 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             self.main_tbl_cities.setItem(row, 1, QtWidgets.QTableWidgetItem(data["state_name"]))
             self.main_tbl_cities.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data["population"]))) 
             row += 1
-        self.main_btn_belgium.setDefault(False)
-        self.main_btn_usa.setDefault(False)
-        self.main_btn_germany.setDefault(True)
+        # self.main_btn_belgium.setDefault(False)
+        # self.main_btn_usa.setDefault(False)
+        # self.main_btn_germany.setDefault(True)
+        self.main_btn_germany.setStyleSheet("background-color: rgba(255,255,255,0.95);")
+        self.main_btn_belgium.setStyleSheet("background-color: rgba(255,255,255,0.7);")
+        self.main_btn_usa.setStyleSheet("background-color: rgba(255,255,255,0.7);")
 
     def USupdate_city(self):
         reader = self.countries_records.find({"country_name":"US"},{'city_name': 1, "state_name":1, 'population': 1})
@@ -119,9 +125,12 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             self.main_tbl_cities.setItem(row, 1, QtWidgets.QTableWidgetItem(data["state_name"]))
             self.main_tbl_cities.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data["population"]))) 
             row += 1
-        self.main_btn_belgium.setDefault(False)
-        self.main_btn_germany.setDefault(False)
-        self.main_btn_usa.setDefault(True)
+        # self.main_btn_belgium.setDefault(False)
+        # self.main_btn_germany.setDefault(False)
+        # self.main_btn_usa.setDefault(True)
+        self.main_btn_usa.setStyleSheet("background-color: rgba(255,255,255,0.95);")
+        self.main_btn_germany.setStyleSheet("background-color: rgba(255,255,255,0.7);")
+        self.main_btn_belgium.setStyleSheet("background-color: rgba(255,255,255,0.7);")
 
     def update_weather(self):
         city_name = self.city_name
