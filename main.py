@@ -68,8 +68,9 @@ class Main_Window(QMainWindow, Ui_MainWindow):
                     self.update_weather()
     
     def search_city(self):
-        self.city_name = self.main_linedit_city.text()
+        self.city_name = (self.main_linedit_city.text()).capitalize()
         try:
+            # (self.city_name).capitalize()
             self.take_info()
             self.update_weather()
             self.main_lbl_searchwarning.hide()

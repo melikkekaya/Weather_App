@@ -5,22 +5,12 @@ import sys, requests, certifi
 
 from Ui_deneme import *
 
-#scrapy ayrı klasörde şehir isimleri, bölge/stateleri ve nüfusları
-
-# connection = "mongodb+srv://tuba:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
-# client = MongoClient(connection)
-# client = MongoClient(connection, tlsCAFile=certifi.where())
-# db = client.get_database ('WeatherApp')
-# weather_records = db.weather
-# countries_records = db.countries_data
-
-
 
 class Main_Window(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(Main_Window, self).__init__()
         self.setupUi(self)
-        connection = "mongodb+srv://tuba:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
+        connection = "mongodb+srv://melike:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
         # client = MongoClient(connection)
         client = MongoClient(connection, tlsCAFile=certifi.where())
         db = client.get_database ('WeatherApp')
@@ -51,7 +41,7 @@ class Main_Window(QMainWindow, Ui_MainWindow):
                     self.update_weather()
     
     def search_city(self):
-        self.city_name = self.main_linedit_city.text()
+        self.city_name = (self.main_linedit_city.text()).capitalize()
         try:
             self.take_info()
             self.update_weather()
@@ -151,14 +141,10 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.pixmap.loadFromData(request.content)
         self.main_lbl_showweathericon.setPixmap(self.pixmap)
 
-        # bu bilgilerden gerekli olanlar Mongoya atılıp oradan yazdırılacak
-        #mongoya yazdırma için db.pymongo2.insert_one ({'name' : 'pymongo tutorial '}) veya find and update
-
-
-        # mongodaki weather bilgisi updatei için: 
-
-        # student updates = {'name': 'Nikhil'} 
-        # records.update_one ({'roll_no': 123}, {'$set': student _updates})
+        self.weather_records.update_one({"city_name" : self.city_name},
+                                        {"$set" :{"temperature" : temp,
+                                                 "weather_situation": weather_situation, 
+                                                 "weather_code": weather_code }},upsert=True)
 
     def exit(self):
         sys.exit()  
