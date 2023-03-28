@@ -11,16 +11,16 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel
 from PyQt5.QtGui import QPixmap
-
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 750)
         MainWindow.setMinimumSize(QtCore.QSize(1000, 750))
         MainWindow.setMaximumSize(QtCore.QSize(1000, 750))
-        MainWindow.setFocusPolicy(QtCore.Qt.StrongFocus)
-        background = QPixmap("photos/Screenshot 2023-03-28 at 15.32.16.png")
+        background = QPixmap("photos/Screenshot 2023-03-28 at 15.32.16.png") # copy path
+        background_label = QLabel(parent=MainWindow)
+        background_label.setPixmap(background)
+        background_label.setGeometry(0, 0, background.width(), background.height())
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.main_btn_search = QtWidgets.QPushButton(self.centralwidget)
@@ -46,14 +46,14 @@ class Ui_MainWindow(object):
         self.main_lbl_headingcity.setStyleSheet("font: 75 24pt \"Times New Roman\";")
         self.main_lbl_headingcity.setObjectName("main_lbl_headingcity")
         self.main_lbl_showcityname = QtWidgets.QLabel(self.centralwidget)
-        self.main_lbl_showcityname.setGeometry(QtCore.QRect(590, 210, 271, 71))
+        self.main_lbl_showcityname.setGeometry(QtCore.QRect(590, 220, 271, 71))
         self.main_lbl_showcityname.setStyleSheet("font: 75 48pt \"Times New Roman\";")
         self.main_lbl_showcityname.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.main_lbl_showcityname.setFrameShadow(QtWidgets.QFrame.Plain)
         self.main_lbl_showcityname.setAlignment(QtCore.Qt.AlignCenter)
         self.main_lbl_showcityname.setObjectName("main_lbl_showcityname")
         self.main_lbl_showweathericon = QtWidgets.QLabel(self.centralwidget)
-        self.main_lbl_showweathericon.setGeometry(QtCore.QRect(590, 300, 181, 131))
+        self.main_lbl_showweathericon.setGeometry(QtCore.QRect(530, 300, 181, 131))
         self.main_lbl_showweathericon.setMaximumSize(QtCore.QSize(16777208, 16777215))
         self.main_lbl_showweathericon.setStyleSheet("font: 75 56pt \"Times New Roman\";")
         self.main_lbl_showweathericon.setFrameShape(QtWidgets.QFrame.NoFrame)
@@ -61,7 +61,7 @@ class Ui_MainWindow(object):
         self.main_lbl_showweathericon.setAlignment(QtCore.Qt.AlignCenter)
         self.main_lbl_showweathericon.setObjectName("main_lbl_showweathericon")
         self.main_lbl_showtemperature = QtWidgets.QLabel(self.centralwidget)
-        self.main_lbl_showtemperature.setGeometry(QtCore.QRect(800, 300, 81, 61))
+        self.main_lbl_showtemperature.setGeometry(QtCore.QRect(740, 300, 191, 61))
         self.main_lbl_showtemperature.setStyleSheet("font: 75 36pt \"Times New Roman\";")
         self.main_lbl_showtemperature.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.main_lbl_showtemperature.setFrameShadow(QtWidgets.QFrame.Plain)
@@ -178,7 +178,7 @@ class Ui_MainWindow(object):
 "")
         self.main_btn_germany.setObjectName("main_btn_germany")
         self.main_lbl_showweathersituation = QtWidgets.QLabel(self.centralwidget)
-        self.main_lbl_showweathersituation.setGeometry(QtCore.QRect(800, 370, 81, 61))
+        self.main_lbl_showweathersituation.setGeometry(QtCore.QRect(740, 370, 201, 61))
         self.main_lbl_showweathersituation.setStyleSheet("font: 75 36pt \"Times New Roman\";")
         self.main_lbl_showweathersituation.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.main_lbl_showweathersituation.setFrameShadow(QtWidgets.QFrame.Plain)
@@ -196,7 +196,7 @@ class Ui_MainWindow(object):
         self.main_btn_info.setFlat(True)
         self.main_btn_info.setObjectName("main_btn_info")
         self.main_lbl_searchwarning = QtWidgets.QLabel(self.centralwidget)
-        self.main_lbl_searchwarning.setGeometry(QtCore.QRect(510, 180, 411, 31))
+        self.main_lbl_searchwarning.setGeometry(QtCore.QRect(500, 180, 421, 31))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(18)

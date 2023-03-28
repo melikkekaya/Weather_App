@@ -29,7 +29,15 @@
    <string>Weather App</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
+   <string notr="true">#centralwidget{
+
+
+border-image: url(:/newPrefix/Desktop/Screenshot 2023-03-28 at 15.32.16.png) 0 0 0 0 stretch stretch;
+border-width: 0px;
+
+}
+
+
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -99,7 +107,7 @@
     <property name="geometry">
      <rect>
       <x>590</x>
-      <y>210</y>
+      <y>220</y>
       <width>271</width>
       <height>71</height>
      </rect>
@@ -123,7 +131,7 @@
    <widget class="QLabel" name="main_lbl_showweathericon">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>530</x>
       <y>300</y>
       <width>181</width>
       <height>131</height>
@@ -154,9 +162,9 @@
    <widget class="QLabel" name="main_lbl_showtemperature">
     <property name="geometry">
      <rect>
-      <x>800</x>
+      <x>740</x>
       <y>300</y>
-      <width>81</width>
+      <width>191</width>
       <height>61</height>
      </rect>
     </property>
@@ -467,9 +475,9 @@ background-color: rgba(255,255,255,0.7);
    <widget class="QLabel" name="main_lbl_showweathersituation">
     <property name="geometry">
      <rect>
-      <x>800</x>
+      <x>740</x>
       <y>370</y>
-      <width>81</width>
+      <width>201</width>
       <height>61</height>
      </rect>
     </property>
@@ -524,9 +532,9 @@ background-color: rgba(255,255,255,0.7);
    <widget class="QLabel" name="main_lbl_searchwarning">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>500</x>
       <y>180</y>
-      <width>411</width>
+      <width>421</width>
       <height>31</height>
      </rect>
     </property>
