@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel
+from PyQt5.QtGui import QPixmap
 
 
 class Ui_MainWindow(object):
@@ -25,7 +27,12 @@ class Ui_MainWindow(object):
 "border-width: 0px;\n"
 "\n"
 "}\n"
-"")
+"") 
+        background = QPixmap("photos/Screenshot 2023-03-28 at 12.27.46.png") # copy path
+        background_label = QLabel(parent=MainWindow)
+        background_label.setPixmap(background)
+        background_label.setGeometry(0, 0, background.width(), background.height())
+       
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.main_btn_search = QtWidgets.QPushButton(self.centralwidget)
