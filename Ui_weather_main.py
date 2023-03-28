@@ -18,24 +18,25 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QtCore.QSize(1000, 750))
         MainWindow.setMaximumSize(QtCore.QSize(1000, 750))
         MainWindow.setStyleSheet("#centralwidget{\n"
-"\n"
-"\n"
-"border-image: url() 0 0 0 0 stretch stretch;\n"
-"border-width: 0px;\n"
-"\n"
+"border-image: url(:/newPrefix/Screenshot 2023-03-28 at 12.27.46.png)\n"
 "}\n"
+"\n"
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.main_btn_search = QtWidgets.QPushButton(self.centralwidget)
         self.main_btn_search.setGeometry(QtCore.QRect(820, 120, 111, 26))
         self.main_btn_search.setObjectName("main_btn_search")
-        self.main_lbl_headingcountrytop = QtWidgets.QLabel(self.centralwidget)
-        self.main_lbl_headingcountrytop.setGeometry(QtCore.QRect(40, 110, 61, 21))
-        self.main_lbl_headingcountrytop.setObjectName("main_lbl_headingcountrytop")
         self.main_lbl_mainheading = QtWidgets.QLabel(self.centralwidget)
         self.main_lbl_mainheading.setGeometry(QtCore.QRect(80, 30, 801, 51))
-        self.main_lbl_mainheading.setStyleSheet("background-color: rgb(254, 255, 227);")
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        font.setPointSize(36)
+        font.setBold(True)
+        font.setWeight(75)
+        self.main_lbl_mainheading.setFont(font)
+        self.main_lbl_mainheading.setStyleSheet("color: rgb(255, 186, 121);")
+        self.main_lbl_mainheading.setAlignment(QtCore.Qt.AlignCenter)
         self.main_lbl_mainheading.setObjectName("main_lbl_mainheading")
         self.main_lbl_headingcity = QtWidgets.QLabel(self.centralwidget)
         self.main_lbl_headingcity.setGeometry(QtCore.QRect(510, 121, 71, 31))
@@ -98,7 +99,6 @@ class Ui_MainWindow(object):
         self.main_btn_exit.setObjectName("main_btn_exit")
         self.main_tbl_cities = QtWidgets.QTableWidget(self.centralwidget)
         self.main_tbl_cities.setGeometry(QtCore.QRect(40, 170, 411, 511))
-        #self.main_tbl_cities.setStyleSheet("background-color: rgb(255, 201, 255);")
         self.main_tbl_cities.setObjectName("main_tbl_cities")
         self.main_tbl_cities.setColumnCount(3)
         self.main_tbl_cities.setRowCount(0)
@@ -110,20 +110,16 @@ class Ui_MainWindow(object):
         self.main_tbl_cities.setHorizontalHeaderItem(2, item)
         self.main_tbl_cities.horizontalHeader().setDefaultSectionSize(135)
         self.main_linedit_city = QtWidgets.QLineEdit(self.centralwidget)
-        self.main_linedit_city.setGeometry(QtCore.QRect(610, 120, 161, 31))
+        self.main_linedit_city.setGeometry(QtCore.QRect(560, 120, 211, 31))
         self.main_linedit_city.setObjectName("main_linedit_city")
         self.main_btn_usa = QtWidgets.QPushButton(self.centralwidget)
-        self.main_btn_usa.setGeometry(QtCore.QRect(330, 110, 81, 26))
-        #self.main_btn_usa.setStyleSheet("background-color: rgb(255, 255, 102);")
+        self.main_btn_usa.setGeometry(QtCore.QRect(300, 110, 81, 26))
         self.main_btn_usa.setObjectName("main_btn_usa")
         self.main_btn_belgium = QtWidgets.QPushButton(self.centralwidget)
-        self.main_btn_belgium.setGeometry(QtCore.QRect(130, 110, 81, 26))
-#         self.main_btn_belgium.setStyleSheet("\n"
-# "background-color: rgb(255, 201, 255);")
+        self.main_btn_belgium.setGeometry(QtCore.QRect(100, 110, 81, 26))
         self.main_btn_belgium.setObjectName("main_btn_belgium")
         self.main_btn_germany = QtWidgets.QPushButton(self.centralwidget)
-        self.main_btn_germany.setGeometry(QtCore.QRect(230, 110, 81, 26))
-        #self.main_btn_germany.setStyleSheet("background-color: rgb(153, 255, 255);")
+        self.main_btn_germany.setGeometry(QtCore.QRect(200, 110, 81, 26))
         self.main_btn_germany.setObjectName("main_btn_germany")
         self.main_lbl_showweathersituation = QtWidgets.QLabel(self.centralwidget)
         self.main_lbl_showweathersituation.setGeometry(QtCore.QRect(730, 390, 181, 61))
@@ -156,8 +152,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Weather App"))
         self.main_btn_search.setText(_translate("MainWindow", "Search City"))
-        self.main_lbl_headingcountrytop.setText(_translate("MainWindow", "Country :"))
-        self.main_lbl_mainheading.setText(_translate("MainWindow", "Welcome!"))
+        self.main_lbl_mainheading.setText(_translate("MainWindow", "Welcome to the Weather App"))
         self.main_lbl_headingcity.setText(_translate("MainWindow", "City:"))
         self.main_lbl_showcityname.setText(_translate("MainWindow", "City name"))
         self.main_lbl_showweathericon.setText(_translate("MainWindow", "Weather icon"))

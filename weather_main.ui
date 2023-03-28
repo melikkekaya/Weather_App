@@ -289,9 +289,9 @@ border-image: url(:/newPrefix/Screenshot 2023-03-28 at 12.27.46.png)
    <widget class="QLineEdit" name="main_linedit_city">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>560</x>
       <y>120</y>
-      <width>161</width>
+      <width>211</width>
       <height>31</height>
      </rect>
     </property>
