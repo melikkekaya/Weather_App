@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
 "\n"
 "}\n"
 "") 
-        background = QPixmap("photos/Screenshot 2023-03-28 at 12.27.46.png") # copy path
+        background = QPixmap("photos/Screenshot 2023-03-28 at 15.32.16.png") # copy path
         background_label = QLabel(parent=MainWindow)
         background_label.setPixmap(background)
         background_label.setGeometry(0, 0, background.width(), background.height())
