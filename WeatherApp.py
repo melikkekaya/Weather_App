@@ -178,6 +178,7 @@ class Main_Window(QMainWindow, Ui_MainWindow):
                                                         "weather_code": weather_code}}, upsert=True)
             else:
                 print(f"Error: {err}")
+                self.main_lbl_searchwarning.setText("Something Went Wrong")
 
 
 
