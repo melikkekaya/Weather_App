@@ -38,13 +38,13 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.main_btn_exit.clicked.connect(self.exit)
 
         self.main_btn_belgium.clicked.connect(self.BEupdate_city)
-        self.main_btn_belgium.clicked.connect(self.BEchange_colour)
+        #self.main_btn_belgium.clicked.connect(self.BEchange_colour)
 
         self.main_btn_germany.clicked.connect(self.DEupdate_city)
-        self.main_btn_germany.clicked.connect(self.DEchange_colour)
+        #self.main_btn_germany.clicked.connect(self.DEchange_colour)
 
         self.main_btn_usa.clicked.connect(self.USupdate_city)
-        self.main_btn_usa.clicked.connect(self.USchange_colour)
+        #self.main_btn_usa.clicked.connect(self.USchange_colour)
 
         self.main_tbl_cities.itemClicked.connect(self.clicked_city)
         self.main_linedit_city.textChanged.connect(self.BEupdate_city)
@@ -225,15 +225,15 @@ class Main_Window(QMainWindow, Ui_MainWindow):
                                                  "weather_code": weather_code }},upsert=True)
 
 
-    def BEchange_colour(self)  :
-        self.main_tbl_cities.setStyleSheet("background-color: rgb(255, 201, 255);")
+    # def BEchange_colour(self)  :
+    #     self.main_tbl_cities.setStyleSheet("background-color: rgb(255, 201, 255);")
         
-    def DEchange_colour(self):
-        self.main_tbl_cities.setStyleSheet("background-color: rgb(153, 255, 255);")
+    # def DEchange_colour(self):
+    #     self.main_tbl_cities.setStyleSheet("background-color: rgb(153, 255, 255);")
         
 
-    def USchange_colour(self):
-        self.main_tbl_cities.setStyleSheet("background-color: rgb(255, 255, 102);")
+    # def USchange_colour(self):
+    #     self.main_tbl_cities.setStyleSheet("background-color: rgb(255, 255, 102);")
          
 
 
