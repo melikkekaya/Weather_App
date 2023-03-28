@@ -17,10 +17,14 @@ class Ui_MainWindow(object):
         MainWindow.resize(1000, 750)
         MainWindow.setMinimumSize(QtCore.QSize(1000, 750))
         MainWindow.setMaximumSize(QtCore.QSize(1000, 750))
-        MainWindow.setStyleSheet("#centralwidget{\n"
-"border-image: url(:/newPrefix/Screenshot 2023-03-28 at 12.27.46.png)\n"
-"}\n"
+        MainWindow.setStyleSheet("\n"
+"#centralwidget{\n"
 "\n"
+"\n"
+"border-image: url(:/newPrefix/Screenshot 2023-03-28 at 12.27.46.png) 0 0 0 0 stretch stretch;\n"
+"border-width: 0px;\n"
+"\n"
+"}\n"
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")

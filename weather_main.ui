@@ -26,10 +26,14 @@
    <string>Weather App</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#centralwidget{
-border-image: url(:/newPrefix/Screenshot 2023-03-28 at 12.27.46.png)
-}
+   <string notr="true">
+#centralwidget{
 
+
+border-image: url(:/newPrefix/Screenshot 2023-03-28 at 12.27.46.png) 0 0 0 0 stretch stretch;
+border-width: 0px;
+
+}
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -400,7 +404,7 @@ border-image: url(:/newPrefix/Screenshot 2023-03-28 at 12.27.46.png)
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="photos/photo.qrc"/>
+  <include location="photos/bg.qrc"/>
  </resources>
  <connections/>
 </ui>
