@@ -9,18 +9,21 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel
-from PyQt5.QtGui import QPixmap
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 750)
         MainWindow.setMinimumSize(QtCore.QSize(1000, 750))
         MainWindow.setMaximumSize(QtCore.QSize(1000, 750))
-        background = QPixmap("photos/Screenshot 2023-03-28 at 15.32.16.png") # copy path
-        background_label = QLabel(parent=MainWindow)
-        background_label.setPixmap(background)
-        background_label.setGeometry(0, 0, background.width(), background.height())
+        MainWindow.setFocusPolicy(QtCore.Qt.StrongFocus)
+        MainWindow.setStyleSheet("#centralwidget{\n"
+"    border-image: url(:/newPrefix/test_bg.png) 0 0 0 0 stretch stretch;\n"
+"border-width: 0px;\n"
+"\n"
+"}\n"
+"")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.main_btn_search = QtWidgets.QPushButton(self.centralwidget)
@@ -121,7 +124,7 @@ class Ui_MainWindow(object):
         self.main_btn_exit.setStyleSheet("font: 75 18pt \"Times New Roman\";")
         self.main_btn_exit.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("/Users/melike/Documents/GitHub/Weather_App/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/logout.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.main_btn_exit.setIcon(icon)
         self.main_btn_exit.setIconSize(QtCore.QSize(50, 50))
         self.main_btn_exit.setFlat(True)
@@ -252,3 +255,4 @@ class Ui_MainWindow(object):
         self.main_btn_germany.setText(_translate("MainWindow", "Germany"))
         self.main_lbl_showweathersituation.setText(_translate("MainWindow", "situation"))
         self.menuMenu.setTitle(_translate("MainWindow", "Menu"))
+import test

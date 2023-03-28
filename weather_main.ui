@@ -29,7 +29,12 @@
    <string>Weather App</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">#centralwidget{
+	border-image: url(:/newPrefix/test_bg.png) 0 0 0 0 stretch stretch;
+border-width: 0px;
+
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="main_btn_search">
@@ -320,8 +325,8 @@
      <string/>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>exit.png</normaloff>exit.png</iconset>
+     <iconset resource="photos/test.qrc">
+      <normaloff>:/newPrefix/logout.png</normaloff>:/newPrefix/logout.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -570,6 +575,8 @@ font: 75 24pt &quot;Times New Roman&quot;;</string>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="photos/test.qrc"/>
+ </resources>
  <connections/>
 </ui>
