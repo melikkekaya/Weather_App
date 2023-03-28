@@ -44,9 +44,9 @@ class Main_Window(QMainWindow, Ui_MainWindow):
                     self.main_linedit_city.clear()
     
     def search_city(self):
-        self.city_name = (self.main_linedit_city.text()).capitalize()
+        self.city_name = (self.main_linedit_city.text()).title()
         query = {"city_name": self.city_name}
-        reader = self.countries_records.find(query, {'city_name': 1})
+        reader = self.countries_records.find (query, {'city_name': 1})
         data_list = [data['city_name'] for data in reader]
 
         if self.city_name in data_list:
