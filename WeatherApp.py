@@ -130,6 +130,13 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         url = f'https://api.openweathermap.org/data/2.5/weather?q={city_name},{country_code}&appid={API_key}&units=metric'
         
         response = requests.get(url)
+        
+        if response.status_code == 404:  # Hava durumu bilgisi yoksa
+            city_name = "brussels"  # "brussels" şehrinin verileri kullanılacak.
+            country_code = "be"  # "brussels" şehri Belçika'da olduğu için ülke kodu "be" olarak ayarlanır.
+            url = f'https://api.openweathermap.org/data/2.5/weather?q={city_name},{country_code}&appid={API_key}&units=metric'
+            response = requests.get(url)
+        
         temp = response.json()['main']['temp']
         self.main_lbl_showtemperature.setText(str(temp)+" C°")
 
@@ -146,6 +153,7 @@ class Main_Window(QMainWindow, Ui_MainWindow):
                                         {"$set" :{"temperature" : temp,
                                                  "weather_situation": weather_situation, 
                                                  "weather_code": weather_code }},upsert=True)
+
 
     def exit(self):
         sys.exit()  
