@@ -11,7 +11,8 @@ class Main_Window(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(Main_Window, self).__init__()
         self.setupUi(self)
-        connection = "mongodb+srv://melike:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
+        # connection = "mongodb+srv://melike:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
+        connection = "mongodb+srv://melike:1234@weatherapp.xzog7un.mongodb.net/?retryWrites=true&w=majority"
         # client = MongoClient(connection)
         client = MongoClient(connection, tlsCAFile=certifi.where())
         db = client.get_database ('WeatherApp')
@@ -128,31 +129,56 @@ class Main_Window(QMainWindow, Ui_MainWindow):
 
         API_key = '38a18d9e8231ce64548938b0187511ce'
         url = f'https://api.openweathermap.org/data/2.5/weather?q={city_name},{country_code}&appid={API_key}&units=metric'
-        
-        response = requests.get(url)
-        
-        if response.status_code == 404:  # Hava durumu bilgisi yoksa
-            city_name = "brussels"  # "brussels" şehrinin verileri kullanılacak.
-            country_code = "be"  # "brussels" şehri Belçika'da olduğu için ülke kodu "be" olarak ayarlanır.
-            url = f'https://api.openweathermap.org/data/2.5/weather?q={city_name},{country_code}&appid={API_key}&units=metric'
+
+        try:
             response = requests.get(url)
-        
-        temp = response.json()['main']['temp']
-        self.main_lbl_showtemperature.setText(str(temp)+" C°")
+            response.raise_for_status() 
 
-        weather_situation = response.json()['weather'][0]['description']
-        self.main_lbl_showweathersituation.setText(weather_situation)
+            temp = response.json()['main']['temp']
+            self.main_lbl_showtemperature.setText(str(temp) + " C°")
 
-        weather_code = response.json()['weather'][0]['icon']
-        self.pixmap = QPixmap()
-        request = requests.get(f'https://openweathermap.org/img/wn/{weather_code}@2x.png')
-        self.pixmap.loadFromData(request.content)
-        self.main_lbl_showweathericon.setPixmap(self.pixmap)
+            weather_situation = response.json()['weather'][0]['description']
+            self.main_lbl_showweathersituation.setText(weather_situation)
 
-        self.weather_records.update_one({"city_name" : self.city_name},
-                                        {"$set" :{"temperature" : temp,
-                                                 "weather_situation": weather_situation, 
-                                                 "weather_code": weather_code }},upsert=True)
+            weather_code = response.json()['weather'][0]['icon']
+            self.pixmap = QPixmap()
+            request = requests.get(f'https://openweathermap.org/img/wn/{weather_code}@2x.png')
+            self.pixmap.loadFromData(request.content)
+            self.main_lbl_showweathericon.setPixmap(self.pixmap)
+
+            self.weather_records.update_one({"city_name": self.city_name},
+                                            {"$set": {"temperature": temp,
+                                                    "weather_situation": weather_situation,
+                                                    "weather_code": weather_code}}, upsert=True)
+        except requests.exceptions.HTTPError as err:
+            if country_code == "BE":
+                # Brüksel'in verileri kullanılacak.
+                city_name = "Brussels"
+                country_code = "BE"
+                url = f'https://api.openweathermap.org/data/2.5/weather?q={city_name},{country_code}&appid={API_key}&units=metric'
+                response = requests.get(url)
+                response.raise_for_status()
+
+                temp = response.json()['main']['temp']
+                self.main_lbl_showtemperature.setText(str(temp) + " C°")
+
+                weather_situation = response.json()['weather'][0]['description']
+                self.main_lbl_showweathersituation.setText(weather_situation)
+
+                weather_code = response.json()['weather'][0]['icon']
+                self.pixmap = QPixmap()
+                request = requests.get(
+                    f'https://openweathermap.org/img/wn/{weather_code}@2x.png')
+                self.pixmap.loadFromData(request.content)
+                self.main_lbl_showweathericon.setPixmap(self.pixmap)
+
+                self.weather_records.update_one({"city_name": self.city_name},
+                                                {"$set": {"temperature": temp,
+                                                        "weather_situation": weather_situation,
+                                                        "weather_code": weather_code}}, upsert=True)
+            else:
+                print(f"Error: {err}")
+
 
 
     def exit(self):
