@@ -220,9 +220,9 @@ class Main_Window(QMainWindow, Ui_MainWindow):
 
 
         self.weather_records.update_one({"city_name" : self.city_name},
-                                        {"$set" :{"temperature" :temp,
-                                                 "weather_situation":weather_situation, 
-                                                 "weather_code": weather_code }})
+                                        {"$set" :{"temperature" : temp,
+                                                 "weather_situation": weather_situation, 
+                                                 "weather_code": weather_code }},upsert=True)
 
 
     def BEchange_colour(self)  :
