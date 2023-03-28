@@ -29,16 +29,7 @@
    <string>Weather App</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#centralwidget{
-
-
-border-image: url(:/newPrefix/Desktop/Screenshot 2023-03-28 at 15.32.16.png) 0 0 0 0 stretch stretch;
-border-width: 0px;
-
-}
-
-
-</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="main_btn_search">
@@ -64,15 +55,15 @@ border-width: 0px;
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>30</y>
+      <y>20</y>
       <width>801</width>
-      <height>51</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Times New Roman</family>
-      <pointsize>48</pointsize>
+      <pointsize>36</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -91,9 +82,9 @@ border-width: 0px;
     <property name="geometry">
      <rect>
       <x>480</x>
-      <y>130</y>
-      <width>71</width>
-      <height>31</height>
+      <y>120</y>
+      <width>81</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -106,9 +97,9 @@ border-width: 0px;
    <widget class="QLabel" name="main_lbl_showcityname">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>490</x>
       <y>220</y>
-      <width>271</width>
+      <width>481</width>
       <height>71</height>
      </rect>
     </property>
@@ -316,8 +307,8 @@ border-width: 0px;
    <widget class="QPushButton" name="main_btn_exit">
     <property name="geometry">
      <rect>
-      <x>910</x>
-      <y>20</y>
+      <x>720</x>
+      <y>640</y>
       <width>71</width>
       <height>61</height>
      </rect>
@@ -359,7 +350,9 @@ border-width: 0px;
     </property>
     <property name="styleSheet">
      <string notr="true">
-  background-color: rgba(255,255,255,0.5);
+background-color: rgba(255,255,255,0.5);
+
+selection-background-color: rgba(255,255,255,0.2);
 
 </string>
     </property>
@@ -405,12 +398,12 @@ border-width: 0px;
      <rect>
       <x>570</x>
       <y>120</y>
-      <width>211</width>
+      <width>231</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
+     <string notr="true">font: 18pt &quot;Times New Roman&quot;;
   background-color: rgba(255,255,255,0.5);
 </string>
     </property>
@@ -482,7 +475,7 @@ background-color: rgba(255,255,255,0.7);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 36pt &quot;Times New Roman&quot;;</string>
+     <string notr="true">font: 75 28pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::NoFrame</enum>
@@ -500,7 +493,7 @@ background-color: rgba(255,255,255,0.7);
     </property>
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>900</x>
       <y>20</y>
       <width>71</width>
       <height>61</height>
