@@ -31,6 +31,8 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.main_btn_germany.clicked.connect(self.DEupdate_city)
         self.main_btn_usa.clicked.connect(self.USupdate_city)
         self.main_tbl_cities.itemClicked.connect(self.clicked_city)
+
+        self.main_btn_info.clicked.connect(self.info)
     
     def clicked_city(self):
             indexes = []
@@ -57,7 +59,6 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             self.main_lbl_searchwarning.show()
             self.main_lbl_searchwarning.setText("Incorrect city name!")
 
-    
     def take_info(self):
         reader = self.countries_records.find({"city_name":self.city_name},{'country_name': 1, "state_name":1, 'population': 1})
         data_list = []
@@ -75,7 +76,6 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             elif self.country_name == "US":
                 self.main_lbl_showcountry.setText("United States of America")
  
-    
     def BEupdate_city(self):
         # mongodb den şehir çek
         reader = self.countries_records.find({"country_name":"BE"},{'city_name': 1, "state_name":1, 'population': 1})
@@ -155,6 +155,7 @@ class Main_Window(QMainWindow, Ui_MainWindow):
                                             {"$set": {"temperature": temp,
                                                     "weather_situation": weather_situation,
                                                     "weather_code": weather_code}}, upsert=True)
+            
         except requests.exceptions.HTTPError as err:
             if country_code == "BE":
                 # Brüksel'in verileri kullanılacak.
@@ -185,11 +186,15 @@ class Main_Window(QMainWindow, Ui_MainWindow):
                 print(f"Error: {err}")
                 self.main_lbl_searchwarning.setText("Something Went Wrong")
 
-
+    def info(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Information")
+        msg.setText("This application is created\non 28 March 2023\nby following developers:\n\nMelih YILMAZ\nMelike KAYA KARDIÇ\nTuba GÜMÜŞ")
+        msg.setStyleSheet("background-color: rgba(92, 128, 154, 0.5);")
+        x = msg. exec_()
 
     def exit(self):
         sys.exit()  
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
