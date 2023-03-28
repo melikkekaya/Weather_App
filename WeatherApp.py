@@ -13,7 +13,6 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         # connection = "mongodb+srv://melike:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
         connection = "mongodb+srv://melike:1234@weatherapp.xzog7un.mongodb.net/?retryWrites=true&w=majority"
-        # client = MongoClient(connection)
         client = MongoClient(connection, tlsCAFile=certifi.where())
         db = client.get_database ('WeatherApp')
         self.weather_records = db.weather
@@ -41,14 +40,20 @@ class Main_Window(QMainWindow, Ui_MainWindow):
                     self.city_name = self.main_tbl_cities.item(i, 0).text()
                     self.take_info()
                     self.update_weather()
+                    self.main_lbl_searchwarning.hide()
+                    self.main_linedit_city.clear()
     
     def search_city(self):
         self.city_name = (self.main_linedit_city.text()).capitalize()
-        try:
+        query = {"city_name": self.city_name}
+        reader = self.countries_records.find(query, {'city_name': 1})
+        data_list = [data['city_name'] for data in reader]
+
+        if self.city_name in data_list:
             self.take_info()
             self.update_weather()
             self.main_lbl_searchwarning.hide()
-        except:
+        else:
             self.main_lbl_searchwarning.show()
             self.main_lbl_searchwarning.setText("Incorrect city name!")
 
@@ -85,9 +90,6 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             self.main_tbl_cities.setItem(row, 1, QtWidgets.QTableWidgetItem(data["state_name"]))
             self.main_tbl_cities.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data["population"]))) 
             row += 1
-        # self.main_btn_germany.setDefault(False)
-        # self.main_btn_usa.setDefault(False)
-        # self.main_btn_belgium.setDefault(True)
         self.main_btn_belgium.setStyleSheet("background-color: rgba(255,255,255,0.95);")
         self.main_btn_germany.setStyleSheet("background-color: rgba(255,255,255,0.7);")
         self.main_btn_usa.setStyleSheet("background-color: rgba(255,255,255,0.7);")
@@ -105,9 +107,6 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             self.main_tbl_cities.setItem(row, 1, QtWidgets.QTableWidgetItem(data["state_name"]))
             self.main_tbl_cities.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data["population"]))) 
             row += 1
-        # self.main_btn_belgium.setDefault(False)
-        # self.main_btn_usa.setDefault(False)
-        # self.main_btn_germany.setDefault(True)
         self.main_btn_germany.setStyleSheet("background-color: rgba(255,255,255,0.95);")
         self.main_btn_belgium.setStyleSheet("background-color: rgba(255,255,255,0.7);")
         self.main_btn_usa.setStyleSheet("background-color: rgba(255,255,255,0.7);")
@@ -125,9 +124,6 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             self.main_tbl_cities.setItem(row, 1, QtWidgets.QTableWidgetItem(data["state_name"]))
             self.main_tbl_cities.setItem(row, 2, QtWidgets.QTableWidgetItem(str(data["population"]))) 
             row += 1
-        # self.main_btn_belgium.setDefault(False)
-        # self.main_btn_germany.setDefault(False)
-        # self.main_btn_usa.setDefault(True)
         self.main_btn_usa.setStyleSheet("background-color: rgba(255,255,255,0.95);")
         self.main_btn_germany.setStyleSheet("background-color: rgba(255,255,255,0.7);")
         self.main_btn_belgium.setStyleSheet("background-color: rgba(255,255,255,0.7);")
