@@ -210,14 +210,19 @@ class Main_Window(QMainWindow, Ui_MainWindow):
 # }
 #         collection.insert_many(weather_data)
 
-        weather_data = {
-           "city_name" : self.city_name,
-           "temperature" :temp,
-           "weather_situation":weather_situation, 
-           "weather_code": weather_code 
-}
-        self.weather_records.insert_one(weather_data)
+#         weather_data = {
+#            "city_name" : self.city_name,
+#            "temperature" :temp,
+#            "weather_situation":weather_situation, 
+#            "weather_code": weather_code 
+# }
+#         self.weather_records.insert_one(weather_data)
 
+
+        self.weather_records.update_one({"city_name" : self.city_name},
+                                        {"$set" :{"temperature" :temp,
+                                                 "weather_situation":weather_situation, 
+                                                 "weather_code": weather_code }})
 
 
     def BEchange_colour(self)  :
