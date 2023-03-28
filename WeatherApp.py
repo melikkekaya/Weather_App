@@ -11,7 +11,8 @@ class Main_Window(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(Main_Window, self).__init__()
         self.setupUi(self)
-        connection = "mongodb+srv://melike:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
+        # connection = "mongodb+srv://melike:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
+        connection = "mongodb+srv://melike:1234@weatherapp.xzog7un.mongodb.net/?retryWrites=true&w=majority"
         # client = MongoClient(connection)
         client = MongoClient(connection, tlsCAFile=certifi.where())
         db = client.get_database ('WeatherApp')
