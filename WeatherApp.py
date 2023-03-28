@@ -3,7 +3,7 @@ from PyQt5.QtGui import *
 from pymongo import *
 import sys, requests, certifi
 
-from Ui_deneme import *
+from Ui_weather_main import *
 
 
 class Main_Window(QMainWindow, Ui_MainWindow):
