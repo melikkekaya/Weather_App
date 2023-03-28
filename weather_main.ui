@@ -27,12 +27,9 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#centralwidget{
-
-
-border-image: url() 0 0 0 0 stretch stretch;
-border-width: 0px;
-
+border-image: url(:/newPrefix/Screenshot 2023-03-28 at 12.27.46.png)
 }
+
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -49,19 +46,6 @@ border-width: 0px;
      <string>Search City</string>
     </property>
    </widget>
-   <widget class="QLabel" name="main_lbl_headingcountrytop">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>110</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Country :</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="main_lbl_mainheading">
     <property name="geometry">
      <rect>
@@ -71,11 +55,22 @@ border-width: 0px;
       <height>51</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <pointsize>36</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(254, 255, 227);</string>
+     <string notr="true">color: rgb(255, 186, 121);</string>
     </property>
     <property name="text">
-     <string>Welcome!</string>
+     <string>Welcome to the Weather App</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="main_lbl_headingcity">
@@ -304,7 +299,7 @@ border-width: 0px;
    <widget class="QPushButton" name="main_btn_usa">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>300</x>
       <y>110</y>
       <width>81</width>
       <height>26</height>
@@ -317,7 +312,7 @@ border-width: 0px;
    <widget class="QPushButton" name="main_btn_belgium">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>100</x>
       <y>110</y>
       <width>81</width>
       <height>26</height>
@@ -330,7 +325,7 @@ border-width: 0px;
    <widget class="QPushButton" name="main_btn_germany">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>200</x>
       <y>110</y>
       <width>81</width>
       <height>26</height>
@@ -404,6 +399,8 @@ border-width: 0px;
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="photos/photo.qrc"/>
+ </resources>
  <connections/>
 </ui>
