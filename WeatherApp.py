@@ -13,29 +13,44 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         # connection with the Mongo DB
-        connection = "mongodb+srv://melike:1234@weatherapp.xzog7un.mongodb.net/?retryWrites=true&w=majority"
-        client = MongoClient(connection, tlsCAFile=certifi.where())
-        db = client.get_database ('WeatherApp')
-        self.weather_records = db.weather           # the collection where the wheather data is held
-        self.countries_records = db.countries_data  # the collection where the country data is held
+        try:
+            connection = "mongodb+srv://melike:1234@weatherapp.xzog7un.mongodb.net/?retryWrites=true&w=majority"
+            client = MongoClient(connection, tlsCAFile=certifi.where())
+            db = client.get_database ('WeatherApp')
+            self.weather_records = db.weather           # the collection where the wheather data is held
+            self.countries_records = db.countries_data  # the collection where the country data is held
+        except :
+            self.main_lbl_searchwarning.setText("No internet connection!")
 
         # to fill the first data when the app is started
-        self.BEupdate_city()
-        self.city_name = self.main_tbl_cities.item(0, 0).text()
-        self.country_name = "BE"
-        self.take_info()
-        self.update_weather()
+        try:
+            self.BEupdate_city()
+            self.city_name = self.main_tbl_cities.item(0, 0).text()
+            self.country_name = "BE"
+            self.take_info()
+            self.update_weather()
+        except:
+            self.main_lbl_showcityname.setText("Antwerp")
+            self.main_lbl_showtemperature.setText("i wish C°")
+            self.main_lbl_showweathersituation.setText("sunny we hope")
+            self.main_lbl_showweathericon.setText(":)")
+            self.main_lbl_showcountry.setText("Belgium")
+            self.main_lbl_showstate.setText("Flanders")
+            self.main_lbl_showpopulation.setText("529,247")
 
-        self.main_btn_search.clicked.connect(self.search_city)
-        self.main_btn_exit.clicked.connect(self.exit)
+        try: # try for working without connection
+            self.main_btn_search.clicked.connect(self.search_city)
+            self.main_btn_exit.clicked.connect(self.exit)
 
-        self.main_btn_belgium.clicked.connect(self.BEupdate_city)
-        self.main_btn_germany.clicked.connect(self.DEupdate_city)
-        self.main_btn_usa.clicked.connect(self.USupdate_city)
-        self.main_tbl_cities.itemClicked.connect(self.clicked_city)
+            self.main_btn_belgium.clicked.connect(self.BEupdate_city)
+            self.main_btn_germany.clicked.connect(self.DEupdate_city)
+            self.main_btn_usa.clicked.connect(self.USupdate_city)
+            self.main_tbl_cities.itemClicked.connect(self.clicked_city)
 
-        self.main_btn_info.clicked.connect(self.info)
-        self.deneme()
+            self.main_btn_info.clicked.connect(self.info)
+            self.deneme()
+        except:
+            pass
     
     def clicked_city(self):
         """A method for updating data chosen from the table"""
@@ -189,6 +204,8 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             else:
                 print(f"Error: {err}")
                 self.main_lbl_searchwarning.setText("Something Went Wrong")
+        except requests.exceptions.ConnectionError:
+            self.main_lbl_searchwarning.setText("No internet connection!")
 
     def info(self):
         msg = QMessageBox()
