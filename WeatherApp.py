@@ -33,6 +33,7 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.main_tbl_cities.itemClicked.connect(self.clicked_city)
 
         self.main_btn_info.clicked.connect(self.info)
+        self.deneme()
     
     def clicked_city(self):
             indexes = []
@@ -196,6 +197,63 @@ class Main_Window(QMainWindow, Ui_MainWindow):
 
     def exit(self):
         sys.exit()  
+
+    def deneme(self):
+        self.controls = QWidget()  # Controls container widget.
+        self.controlsLayout = QVBoxLayout()   # Controls container layout.
+        # List of names, widgets are stored in a dictionary by these keys.
+
+        search_term = self.main_linedit_city.text().lower()
+        query = {"city_name": {"$regex": "^" + search_term, "$options": "i"}}
+        reader = self.countries_records.find(query, {'city_name': 1})
+        self.data_list = [data['city_name'] for data in reader]
+
+        self.widgets = []
+        # Iterate the names, creating a new OnOffWidget for
+        # each one, adding it to the layout and
+        # and storing a reference in the self.widgets dict
+        for name in self.data_list:
+            item = OnOffWidget(name)
+            self.controlsLayout.addWidget(item)
+            self.widgets.append(item)
+        spacer = QSpacerItem(1, 1, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.controlsLayout.addItem(spacer)
+        self.controls.setLayout(self.controlsLayout)
+        # Scroll Area Properties.
+        self.scroll = QScrollArea()
+        self.scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scroll.setWidgetResizable(True)
+        self.scroll.setWidget(self.controls)
+        # Search bar.
+        # self.mainscreen.edt_search = QLineEdit()
+        self.main_linedit_city.textChanged.connect(self.update_display)
+        # Adding Completer.
+        self.completer = QCompleter(self.data_list)
+        self.completer.setCaseSensitivity(Qt.CaseInsensitive)
+        self.main_linedit_city.setCompleter(self.completer)
+        # Add the items to VBoxLayout (applied to container widget)
+        # which encompasses the whole window.
+        containerLayout = QVBoxLayout()
+        containerLayout.addWidget(self.main_linedit_city)
+        containerLayout.addWidget(self.scroll)
+        # container.setLayout(containerLayout)
+        # container.setGeometry(QtCore.QRect(500, 60, 361, 31))
+        # self.setCentralWidget(container)
+    def update_display(self):
+        search_term = self.main_linedit_city.text().lower()
+        city_names = self.data_list
+        matches = [city for city in city_names if search_term in city.lower()]
+        model = QStringListModel()
+        model.setStringList(matches)
+        self.completer.setModel(model)
+
+class OnOffWidget(QWidget):
+    def __init__(self, name):
+        super(OnOffWidget, self).__init__()
+        self.name = name
+        self.is_on = False
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
