@@ -28,12 +28,17 @@
   <property name="windowTitle">
    <string>Weather App</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="test.qrc">
+    <normaloff>:/newPrefix/weather.png</normaloff>:/newPrefix/weather.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">#centralwidget{
-	border-image: url(:/newPrefix/test_bg.png) 0 0 0 0 stretch stretch;
+border-image: url(:/newPrefix/Screenshot 2023-03-28 at 15.32.16.png) 0 0 0 0 stretch stretch;
 border-width: 0px;
 
 }
+
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -127,7 +132,7 @@ border-width: 0px;
    <widget class="QLabel" name="main_lbl_showweathericon">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>560</x>
       <y>300</y>
       <width>181</width>
       <height>131</height>
@@ -159,13 +164,13 @@ border-width: 0px;
     <property name="geometry">
      <rect>
       <x>740</x>
-      <y>300</y>
+      <y>310</y>
       <width>191</width>
       <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 36pt &quot;Times New Roman&quot;;</string>
+     <string notr="true">font: 75 28pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::NoFrame</enum>
@@ -325,8 +330,8 @@ border-width: 0px;
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="photos/test.qrc">
-      <normaloff>:/newPrefix/logout.png</normaloff>:/newPrefix/logout.png</iconset>
+     <iconset resource="test.qrc">
+      <normaloff>:/newPrefix/log-out.png</normaloff>:/newPrefix/log-out.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -576,7 +581,7 @@ font: 75 24pt &quot;Times New Roman&quot;;</string>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="photos/test.qrc"/>
+  <include location="test.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -18,11 +18,15 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QtCore.QSize(1000, 750))
         MainWindow.setMaximumSize(QtCore.QSize(1000, 750))
         MainWindow.setFocusPolicy(QtCore.Qt.StrongFocus)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/weather.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("#centralwidget{\n"
-"    border-image: url(:/newPrefix/test_bg.png) 0 0 0 0 stretch stretch;\n"
+"border-image: url(:/newPrefix/Screenshot 2023-03-28 at 15.32.16.png) 0 0 0 0 stretch stretch;\n"
 "border-width: 0px;\n"
 "\n"
 "}\n"
+"\n"
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -56,7 +60,7 @@ class Ui_MainWindow(object):
         self.main_lbl_showcityname.setAlignment(QtCore.Qt.AlignCenter)
         self.main_lbl_showcityname.setObjectName("main_lbl_showcityname")
         self.main_lbl_showweathericon = QtWidgets.QLabel(self.centralwidget)
-        self.main_lbl_showweathericon.setGeometry(QtCore.QRect(530, 300, 181, 131))
+        self.main_lbl_showweathericon.setGeometry(QtCore.QRect(560, 300, 181, 131))
         self.main_lbl_showweathericon.setMaximumSize(QtCore.QSize(16777208, 16777215))
         self.main_lbl_showweathericon.setStyleSheet("font: 75 56pt \"Times New Roman\";")
         self.main_lbl_showweathericon.setFrameShape(QtWidgets.QFrame.NoFrame)
@@ -64,8 +68,8 @@ class Ui_MainWindow(object):
         self.main_lbl_showweathericon.setAlignment(QtCore.Qt.AlignCenter)
         self.main_lbl_showweathericon.setObjectName("main_lbl_showweathericon")
         self.main_lbl_showtemperature = QtWidgets.QLabel(self.centralwidget)
-        self.main_lbl_showtemperature.setGeometry(QtCore.QRect(740, 300, 191, 61))
-        self.main_lbl_showtemperature.setStyleSheet("font: 75 36pt \"Times New Roman\";")
+        self.main_lbl_showtemperature.setGeometry(QtCore.QRect(740, 310, 191, 61))
+        self.main_lbl_showtemperature.setStyleSheet("font: 75 28pt \"Times New Roman\";")
         self.main_lbl_showtemperature.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.main_lbl_showtemperature.setFrameShadow(QtWidgets.QFrame.Plain)
         self.main_lbl_showtemperature.setObjectName("main_lbl_showtemperature")
@@ -123,9 +127,9 @@ class Ui_MainWindow(object):
         self.main_btn_exit.setGeometry(QtCore.QRect(720, 640, 71, 61))
         self.main_btn_exit.setStyleSheet("font: 75 18pt \"Times New Roman\";")
         self.main_btn_exit.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/newPrefix/logout.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.main_btn_exit.setIcon(icon)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/newPrefix/log-out.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.main_btn_exit.setIcon(icon1)
         self.main_btn_exit.setIconSize(QtCore.QSize(50, 50))
         self.main_btn_exit.setFlat(True)
         self.main_btn_exit.setObjectName("main_btn_exit")
@@ -194,9 +198,9 @@ class Ui_MainWindow(object):
         self.main_btn_info.setFocusPolicy(QtCore.Qt.NoFocus)
         self.main_btn_info.setStyleSheet("font: 75 18pt \"Times New Roman\";")
         self.main_btn_info.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("/Users/melike/Documents/GitHub/Weather_App/information.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.main_btn_info.setIcon(icon1)
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("/Users/melike/Documents/GitHub/Weather_App/information.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.main_btn_info.setIcon(icon2)
         self.main_btn_info.setIconSize(QtCore.QSize(50, 50))
         self.main_btn_info.setFlat(True)
         self.main_btn_info.setObjectName("main_btn_info")
@@ -255,4 +259,4 @@ class Ui_MainWindow(object):
         self.main_btn_germany.setText(_translate("MainWindow", "Germany"))
         self.main_lbl_showweathersituation.setText(_translate("MainWindow", "situation"))
         self.menuMenu.setTitle(_translate("MainWindow", "Menu"))
-import test
+import test_rc

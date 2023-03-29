@@ -1,5 +1,11 @@
 <RCC>
   <qresource prefix="newPrefix">
-    <file>../../../../../../Desktop/Screenshot 2023-03-28 at 15.32.16.png</file>
+    <file>weather.png</file>
+    <file>log-out.png</file>
+    <file>information.png</file>
+    <file>Screenshot 2023-03-28 at 15.32.16.png</file>
+    <file>door.png</file>
+    <file>search.png</file>
+    <file>search-2.png</file>
   </qresource>
 </RCC>
