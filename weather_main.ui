@@ -519,8 +519,8 @@ background-color: rgba(255,255,255,0.7);
      <string/>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>information.png</normaloff>information.png</iconset>
+     <iconset resource="test.qrc">
+      <normaloff>:/newPrefix/information.png</normaloff>:/newPrefix/information.png</iconset>
     </property>
     <property name="iconSize">
      <size>

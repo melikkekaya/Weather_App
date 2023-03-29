@@ -159,7 +159,7 @@ class Main_Window(QMainWindow, Ui_MainWindow):
             response.raise_for_status() 
 
             temp = response.json()['main']['temp']
-            self.main_lbl_showtemperature.setText(str(temp) + " C°")
+            self.main_lbl_showtemperature.setText(str(round(temp)) + " C°")
 
             weather_situation = response.json()['weather'][0]['description']
             self.main_lbl_showweathersituation.setText(weather_situation)
@@ -185,7 +185,7 @@ class Main_Window(QMainWindow, Ui_MainWindow):
                 response.raise_for_status()
 
                 temp = response.json()['main']['temp']
-                self.main_lbl_showtemperature.setText(str(temp) + " C°")
+                self.main_lbl_showtemperature.setText(str(round(temp)) + " C°")
 
                 weather_situation = response.json()['weather'][0]['description']
                 self.main_lbl_showweathersituation.setText(weather_situation)
@@ -267,6 +267,7 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         model = QStringListModel()
         model.setStringList(matches)
         self.completer.setModel(model)
+        # self.search_city()
 
 class OnOffWidget(QWidget):
     def __init__(self, name):

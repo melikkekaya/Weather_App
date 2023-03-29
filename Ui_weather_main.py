@@ -199,7 +199,7 @@ class Ui_MainWindow(object):
         self.main_btn_info.setStyleSheet("font: 75 18pt \"Times New Roman\";")
         self.main_btn_info.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("/Users/melike/Documents/GitHub/Weather_App/information.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/newPrefix/information.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.main_btn_info.setIcon(icon2)
         self.main_btn_info.setIconSize(QtCore.QSize(50, 50))
         self.main_btn_info.setFlat(True)
