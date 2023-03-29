@@ -11,13 +11,15 @@ class Main_Window(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(Main_Window, self).__init__()
         self.setupUi(self)
-        # connection = "mongodb+srv://melike:1234@weatherapp.6zi3pge.mongodb.net/Configurations?retryWrites=true&w=majority"
+
+        # connection with the Mongo DB
         connection = "mongodb+srv://melike:1234@weatherapp.xzog7un.mongodb.net/?retryWrites=true&w=majority"
         client = MongoClient(connection, tlsCAFile=certifi.where())
         db = client.get_database ('WeatherApp')
-        self.weather_records = db.weather
-        self.countries_records = db.countries_data
+        self.weather_records = db.weather           # the collection where the wheather data is held
+        self.countries_records = db.countries_data  # the collection where the country data is held
 
+        # to fill the first data when the app is started
         self.BEupdate_city()
         self.city_name = self.main_tbl_cities.item(0, 0).text()
         self.country_name = "BE"
@@ -36,15 +38,16 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         self.deneme()
     
     def clicked_city(self):
-            indexes = []
-            for selectionRange in self.main_tbl_cities.selectedRanges():
-                indexes.extend(range(selectionRange.topRow(), selectionRange.bottomRow()+1))
-                for i in indexes:
-                    self.city_name = self.main_tbl_cities.item(i, 0).text()
-                    self.take_info()
-                    self.update_weather()
-                    self.main_lbl_searchwarning.hide()
-                    self.main_linedit_city.clear()
+        """A method for updating data chosen from the table"""
+        indexes = []
+        for selectionRange in self.main_tbl_cities.selectedRanges():
+            indexes.extend(range(selectionRange.topRow(), selectionRange.bottomRow()+1)) # adding the indexes into a list to stroll in the table widget
+            for i in indexes:
+                self.city_name = self.main_tbl_cities.item(i, 0).text()  # to take the city_name when a row is clicked in the table widget
+                self.take_info()
+                self.update_weather()
+                self.main_lbl_searchwarning.hide()
+                self.main_linedit_city.clear()
     
     def search_city(self):
         self.city_name = (self.main_linedit_city.text()).title()
