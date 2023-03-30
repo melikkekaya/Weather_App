@@ -1,7 +1,7 @@
 # Weather_App
 Weather application..
 This project is a Weather App with graphical user interface.
-When the program starts, Netherlands USA and Germany can be selected.
+When the program starts, Belgium, USA and Germany can be selected.
 
 The Purpose of the Program:
 The user can search by city.
@@ -14,6 +14,8 @@ PyQT5 will be used as GUI
 Scrapy will be used as Web Scrapping Tool
 HTTP-Request and API will be used 
 MongoDB will be used as DBMS
+![image](https://user-images.githubusercontent.com/119672368/228943174-d1043b22-d0f9-435a-b8ae-fefbf5259e44.png)
+
 
 
 What was done in the weather application project:
