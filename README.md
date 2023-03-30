@@ -18,7 +18,7 @@ MongoDB will be used as DBMS
 
 What was done in the weather application project:
 City, state and population information taken from website with scrapy.
-You can access this information at https://tr.wikipedia.
+You can access this information at https://openweathermap.org
 This information scraped with Scrapy was saved to MongoDB.
 Current weather information is captured with API and saved to MongoDB.
 
