@@ -1,7 +1,6 @@
-# Weather_App
-Weather application..
-This project is a Weather App with graphical user interface.
-When the program starts, Belgium, USA and Germany can be selected.
+# Weather_App - Team Project
+
+This project creates a Weather Application showing current temperature and weather situation of the cities from Belgium, USA and Germany with some information abut city within a graphical user interface.
 
 The Purpose of the Program:
 The user can search by city.
